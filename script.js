@@ -25,6 +25,7 @@ cardNumber.addEventListener('keyup', () => {
 
 
 function submitForm(){
+  let validator = [];
 
   let registeredCardNumberContainer = document.getElementById("registered_number_container");
   let registeredCardholderNameContainer = document.getElementById("registered_name_container");
@@ -40,84 +41,17 @@ function submitForm(){
   registeredCardholderName.classList.add("card_front_details_content");
   registeredExpirationDate.classList.add("card_front_details_content");
 
+
   //Validate the cardholder name input
-  if(cardholderName.value !== ""){
-    if(!containsOnlyNumbers(cardholderName.value)){
-      cardholderName.style.border = "1px solid green";
-      invalidNameMessage.innerText = "";
-    } 
-    else { invalidNameMessage.innerText = "Wrong format, letters only"; 
-          cardholderName.style.border = "1px solid red";}
-  } 
-  else { invalidNameMessage.innerText = "Can't be blank"; 
-        cardholderName.style.border = "1px solid red";}
-
-  //Validate the card number input
-  if(cardNumber.value !== ""){
-    if(containsOnlyNumbers(cardNumber.value)){
-      if(checkLength(cardNumber.value, 19)){
-        cardNumber.style.border = "1px solid green";
-        invalidNumberMessage.innerText = "";
-      } 
-      else { invalidNumberMessage.innerText = "The number is too short"; 
-            cardNumber.style.border = "1px solid red"; }
-    } 
-    else { invalidNumberMessage.innerText = "Wrong format, numbers only"; 
-          cardNumber.style.border = "1px solid red";}
-  } 
-  else { invalidNumberMessage.innerText = "Can't be blank"; 
-        cardNumber.style.border = "1px solid red";}
-
-  //Validate the card month expiration date input
-  if(expirationDateMonth.value !== ""){
-    if(containsOnlyNumbers(expirationDateMonth.value)){
-      if(checkLength(expirationDateMonth.value, 2)){
-        expirationDateMonth.style.border = "1px solid green";
-        invalidExpirationDateMessage.innerText = "";
-      } 
-      else { invalidExpirationDateMessage.innerText = "The number is too short"; 
-            expirationDateMonth.style.border = "1px solid red";}
-    } 
-    else { invalidExpirationDateMessage.innerText = "Wrong format, numbers only"; 
-          expirationDateMonth.style.border = "1px solid red";}
-  } 
-  else { invalidExpirationDateMessage.innerText = "Can't be blank"; 
-        expirationDateMonth.style.border = "1px solid red";}
-
-  //Validate the card year expiration date input
-  if(expirationDateYear.value !== ""){
-    if(containsOnlyNumbers(expirationDateYear.value)){
-      if(checkLength(expirationDateYear.value, 2)){
-        expirationDateYear.style.border = "1px solid green";
-        invalidExpirationDateMessage.innerText = "";
-      } 
-      else { invalidExpirationDateMessage.innerText = "The number is too short"; 
-            expirationDateYear.style.border = "1px solid red";}
-    } 
-    else { invalidExpirationDateMessage.innerText = "Wrong format, numbers only"; 
-          expirationDateYear.style.border = "1px solid red";}
-  } 
-  else { invalidExpirationDateMessage.innerText = "Can't be blank"; 
-        expirationDateYear.style.border = "1px solid red";}
-
-  //Validate the card security code input
-  if(securityCode.value !== ""){
-    if(containsOnlyNumbers(securityCode.value)){
-      if(checkLength(securityCode.value, 3)){
-        securityCode.style.border = "1px solid green";
-        invalidSecurityCodeMessage.innerText = "";
-      } 
-      else { invalidSecurityCodeMessage.innerText = "The number is too short"; 
-            securityCode.style.border = "1px solid red";}
-    } 
-    else { invalidSecurityCodeMessage.innerText = "Wrong format, numbers only"; 
-          securityCode.style.border = "1px solid red";}
-  } 
-  else { invalidSecurityCodeMessage.innerText = "Can't be blank"; 
-        securityCode.style.border = "1px solid red";}
-        
+  validator.push(validation(cardholderName, invalidNameMessage));
+  validator.push(validation(cardNumber, invalidNumberMessage,19));
+  validator.push(validation(expirationDateMonth, invalidExpirationDateMessage,2));
+  validator.push(validation(expirationDateYear, invalidExpirationDateMessage,2));
+  validator.push(validation(securityCode, invalidSecurityCodeMessage));
+ 
   //Check if all inputs are valid
-  if(cardholderName.style.border == "1px solid green" && cardNumber.style.border == "1px solid green" && expirationDateMonth.style.border == "1px solid green" && expirationDateYear.style.border == "1px solid green" && securityCode.style.border == "1px solid green"){
+
+  if(validator.length==5 && validator.every((el) => el.valid == true)){
     registeredCardholderName.innerText = cardholderName.value;
     registeredCardNumber.innerText = cardNumber.value;
     registeredExpirationDate.innerText = expirationDateMonth.value + "/" + expirationDateYear.value;
@@ -144,4 +78,7 @@ function containsOnlyNumbers(inputValue) {
 function checkLength(inputValue, number) {
   return inputValue.length === number;
 }
+
+
+
 

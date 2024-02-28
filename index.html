@@ -35,45 +35,56 @@
   </head>
   <body>
     <div class="main_section">
-      <div>
-        <div class="card_front" id="registered_number_container">
-          <!-- <p class="card_front_number">1234 5678 9123 0000</p> -->
+      <div class="card_container">
+        <div class="card_front" >
+
+          <div id="registered_number_container">
+            <!-- Card number -->
+          </div>
 
           <div class="card_front_details">
-            <div>
-              <!-- <span class="card_front_details_content">Jane Appleseed</span> -->
+
+            <div id="registered_name_container">
+              <!-- Cardholder Name -->
             </div>
-            <div>
-              <!-- <span class="card_front_details_content">00/</span>
-              <span class="card_front_details_content">00</span> -->
+
+            <div id="registered_expiration_date_container">
+              <!-- Card Expiration Date -->
             </div>
+
           </div>
+
         </div>
-        <div class="card_back">
-          <!-- <span>000</span> -->
+
+        <div class="card_back" id="registered_security_code_container">
+          <!-- Card Security Code -->
         </div>
       </div>
 
-      <div class="form_container">
+      <div class="form_container" id="form_container">
         <div class="field_container">
           <label class="field_label" for="cardholder_name">Cardholder Name</label><br />
           <input class="field_input" id="cardholder_name" type="text" placeholder="e.g. Jane Appleseed"/>
+          <p class="error_container" id="invalid_name_message"></p>
         </div>
 
-        <div class="field_container">
+        <div class="field_container" id="number_container">
           <label class="field_label" for="card_number">Card Number</label><br />
-          <input class="field_input" id="card_number" type="text" placeholder="e.g. 1234 5678 9123 0000"/>
+          <input class="field_input" id="card_number" type="text" placeholder="e.g. 1234 5678 9123 0000" maxlength = "19"/>
+          <p class="error_container" id="invalid_number_message"></p>
         </div>
 
         <div class="field_container">
           <label class="field_label" for="expiration_date">Exp. Date (MM/YY)</label><br />
-          <input class="field_input expiration_date" id="expiration_date_month" type="text" placeholder="MM"/>
-          <input class="field_input expiration_year" id="expiration_date_year" type="text" placeholder="YY"/>
+          <input class="field_input expiration_date" id="expiration_date_month" type="text" placeholder="MM" maxlength = "2"/>
+          <input class="field_input expiration_year" id="expiration_date_year" type="text" placeholder="YY" maxlength = "2"/>
+          <p class="error_container" id="invalid_expiration_date_message"></p>
         </div>
 
         <div class="field_container">
           <label class="field_label" for="security_code">CVC</label><br />
-          <input class="field_input security_code" id="security_code" type="text"  placeholder="e.g. 123"/>
+          <input class="field_input security_code" id="security_code" type="text"  placeholder="e.g. 123" maxlength = "3"/>
+          <p class="error_container" id="invalid_security_code_message"></p>
         </div>
 
         <div class="field_container">
@@ -81,16 +92,21 @@
         </div>
         
       </div>
-    </div>
-    <!-- Completed state start -->
 
-    <!-- Thank you!
-  We've added your card details
-  Continue
+      <!-- Completed state start -->
+      <div class="complete_state_container" id="complete_state_container">
+        <svg width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="40" fill="url(#a)"/><path d="M28 39.92 36.08 48l16-16" stroke="#fff" stroke-width="3"/><defs><linearGradient id="a" x1="-23.014" y1="11.507" x2="0" y2="91.507" gradientUnits="userSpaceOnUse"><stop stop-color="#6348FE"/><stop offset="1" stop-color="#610595"/></linearGradient></defs></svg>
+        <h1 class="complete_state_title">Thank you!</h1>
+        <p>We've added you card details</p>
+        <button class="complete_state_button">Continue</button>
+      </div>
+    </div>
+
+
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div> -->
+    Coded by <a href="#">Simion Marina Mihaela</a>.
+  </div> 
   </body>
 </html>

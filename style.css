@@ -17,7 +17,7 @@
   display: grid;
   grid-column-gap: 10px;
   grid-template-columns: 200px 400px;
-  grid-template-rows: 100px 100px 100px 150px;
+  grid-template-rows: 120px 120px 120px 150px;
   grid-template-areas:
     "name name"
     "number number"
@@ -53,6 +53,7 @@
 }
 
 .field_input {
+  
   width: 400px;
   margin-top: 10px;
   padding: 12px;
@@ -63,6 +64,12 @@
   color: #adb5bf;
   font-family: "Space Grotesk", sans-serif;
   font-weight: 500;
+  outline: none; 
+}
+.error_container{
+  font-size: 16px;
+  color: red;
+  margin: 5px;
 }
 .expiration_date {
   float: left;
@@ -143,3 +150,32 @@
   letter-spacing: 0.2rem;
   font-weight: 500;
 }
+
+/* Complete state classes*/
+.complete_state_container{
+  margin-right: 20%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  
+}
+.complete_state_button{
+  width: 400px;
+  height: 60px;
+  margin-top: 40px;
+  background-color: #220930;
+  border-radius: 10px;
+  border-color: #220930;
+  color: #d7c9de;
+  font-size: 20px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+}
+.complete_state_title{
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
